@@ -1,7 +1,7 @@
 // Spel värden
 let min = 1,
     max = 10,
-    winningNum = 2,
+    winningNum = getRandomNum(min, max),
     guessesLeft = 3;
 
 // UI Elements
@@ -15,6 +15,14 @@ const game = document.querySelector('#game'),
 // Assign UI min and max
 minNum.textContent = min;
 maxNum.textContent = max;
+
+// play again event listener
+game.addEventListener('mousedown', function(e){
+  if(e.target.className === 'play-again'){
+    window.location.reload();
+  }
+});
+
 
 // Lyssna på guess
 guessBtn.addEventListener('click', function(){
@@ -70,6 +78,11 @@ function gameOver(won, msg){
   guessBtn.value = 'Play Again';
   guessBtn.className += 'play-again';
 
+}
+
+// Nummer winning random
+function getRandomNum(min, max) {
+  return Math.floor(Math.random()*(max-min+1)+min);
 }
 
 // set message
